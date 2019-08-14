@@ -44,34 +44,38 @@
     </main>
     <script>
         
-        // 提交注册信息
-        $("#register-form").submit(function(e){
-            e.preventDefault();
-            if($("#password").val().length<6){
-                $("#error-text").html("你的密码不能少于6位数");
-                return;
-            }
-            if($("#password").val()!==$("#repeat-password").val()){
-                $("#error-text").html("两次输入的密码不一致");
-                return;
-            }
-            $.ajax({
-                url:"__PUBLIC__/index/user/register",
-                type:"post",
-                data:{
-                    email:$("#email").val(),
-                    password:$("#password").val(),
-                    nickName:$("#nick-name").val()
-                },
-                success:function(response){
-                    response = JSON.parse(response);
-                    if(response.code!=="0000"){
-                        $("#error-text").html(response.msg);
-                        return;
-                    }
+        (()=>{
+            // 提交注册信息
+            $("#register-form").submit((e)=>{
+                e.preventDefault();
+                if($("#password").val().length<6){
+                    $("#error-text").html("你的密码不能少于6位数");
+                    return;
                 }
+                if($("#password").val()!==$("#repeat-password").val()){
+                    $("#error-text").html("两次输入的密码不一致");
+                    return;
+                }
+                $.ajax({
+                    url:"__PUBLIC__/index/user/register",
+                    type:"post",
+                    data:{
+                        email:$("#email").val(),
+                        password:$("#password").val(),
+                        nickName:$("#nick-name").val()
+                    },
+                    success:(response)=>{
+                        response = JSON.parse(response);
+                        if(response.code!=="0000"){
+                            $("#error-text").html(response.msg);
+                            return;
+                        }
+                    }
+                });
             });
-        });
+
+        })();
+        
 
 
     

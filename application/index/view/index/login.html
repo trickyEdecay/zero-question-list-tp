@@ -34,26 +34,28 @@
     </main>
     <script>
         
-        // 登录的逻辑
-        $("#login-form").submit(function(e){
-            e.preventDefault();
-            $.ajax({
-                url:"__PUBLIC__/index/user/login",
-                type:"post",
-                data:{
-                    email:$("#email").val(),
-                    password:$("#password").val()
-                },
-                success:function(response){
-                    response = JSON.parse(response);
-                    if(response.code!=="0000"){
-                        $("#error-text").html(response.msg);
-                        return;
+        (()=>{
+            // 登录的逻辑
+            $("#login-form").submit((e)=>{
+                e.preventDefault();
+                $.ajax({
+                    url:"__PUBLIC__/index/user/login",
+                    type:"post",
+                    data:{
+                        email:$("#email").val(),
+                        password:$("#password").val()
+                    },
+                    success:(response)=>{
+                        response = JSON.parse(response);
+                        if(response.code!=="0000"){
+                            $("#error-text").html(response.msg);
+                            return;
+                        }
+                        location.href="__PUBLIC__/";
                     }
-                    location.href="__PUBLIC__/";
-                }
+                });
             });
-        });
+        })();
 
 
     

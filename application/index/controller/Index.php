@@ -18,4 +18,9 @@ class Index
     public function register(){
         return view();
     }
+
+    
+    public function test(){
+        return view();
+    }
 }

@@ -149,4 +149,18 @@ class User extends Auth
         );
     }
 
+
+    public function a(){
+        sleep(2);
+        return "1";
+    }
+    public function b(){
+        sleep(1);
+        return "2";
+    }
+    public function c(){
+        sleep(1);
+        return "3";
+    }
+
 }
